@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>testing functions</title>
+</head>
+
+<body>
+    <script>
+        var drawCats = function (howManyTimes) {
+            for (var i = 0; i < howManyTimes; i++) {
+                console.log(i + " =^.^=");
+            }
+        };
+
+        var catAmmount = prompt("How many cats to log?");
+        drawCats(catAmmount);
+    </script>
+</body>
+
+</html>

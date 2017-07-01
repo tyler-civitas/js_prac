@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>testing functions</title>
+</head>
+
+<body>
+    <script>
+        // #1
+        function add(a, b) {
+            return a + b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        console.log("multiply 2, 3 >> " + multiply(2, 3));
+        console.log("add 2, 3 >> "  + add(2, 3));
+
+        // #2
+        function areArraysSame(arrA, arrB) {
+            if (arrA.length !== arrB.length) {
+                return false;
+            } else {
+                for (var i = 0; i < arrA.length; i++) {
+                    if (arrA[i] !== arrB[i]) {
+                        return false;
+                    }
+                }
+            }
+            // if loop did not terminate early
+            return true;
+        }
+
+        console.log(areArraysSame([1, 2, 3], [4, 5, 6]));
+        console.log(areArraysSame([1, 2, 3], [1, 2, 3]));
+        console.log(areArraysSame([1, 2, 3], [1, 2, 3, 4]));
+    </script>
+</body>
+
+</html>
