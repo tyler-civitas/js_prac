@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hangman!</title>
+</head>
+
+<body>
+    <h1>Hangman!</h1>
+    <script>
+        var words = [
+            "javascript",
+            "monkey",
+            "amazing",
+            "pancake",
+            "jupyter",
+            "ben",
+            "catmandoo",
+            "motorcycle"
+            ];
+
+        var word = words[Math.floor(Math.random() * words.length)];
+
+        var answerArray = []
+        for (var i = 0; i < word.length; i++) {
+            answerArray[i] = "_";
+        }
+
+        var remainingLetters = word.length;
+        var remainingGuesses = 10;
+
+        while ((remainingLetters > 0) && (remainingGuesses > 0)) {
+            alert(answerArray.join(" "));
+
+            // Player Guess
+            var guess = prompt("Guess a letter, or click Cancel to stop playing.");
+            if (guess === null) {
+                break;
+            } else if (guess.length !== 1) {
+                alert("Please enter a single letter.");
+            } else {
+                for (var j = 0; j < word.length; j++) {
+                    if (word[j] === guess.toLowerCase()) {
+                        if (answerArray[j] !== "_") {
+                            alert("Already chose this letter, try again!");
+                            break;
+                        } else {
+                            answerArray[j] = guess.toLowerCase();
+                            remainingLetters--;
+                            remainingGuesses--;
+                        }
+                    }
+                }
+            }
+        }
+
+        alert(answerArray.join(" "));
+        alert("Good Job! The answer was " + word);
+    </script>
+<body>
+</html>
