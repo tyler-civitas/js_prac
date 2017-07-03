@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Playing with the DOM</title>
+</head>
+
+<body>
+    <h1 id="main-heading">My friends Exercise 2</h1>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        for (var i = 0; i < 5; i++) {
+            var timeFade = (i * 1000) / 2
+            $("#main-heading").fadeOut(timeFade);
+            $("#main-heading").delay(5000).fadeIn(timeFade);
+        }
+    </script>
+</body>
+</html>

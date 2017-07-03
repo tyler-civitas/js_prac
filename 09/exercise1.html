@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Playing with the DOM</title>
+</head>
+
+<body>
+    <h1 id="main-heading">My friends Exercise 1</h1>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        $("#main-heading").hide().fadeIn(500);
+        var onlyFriends = ["llama", "giraffe", "greg"];
+
+        for (var i = 0; i < onlyFriends.length; i++) {
+            $("body").append("<p>" + onlyFriends[i] + "</p>").hide().fadeIn(1000);
+        }
+
+        $("p").append(" smells!");
+    </script>
+</body>
+</html>
