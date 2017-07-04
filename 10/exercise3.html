@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mousemove</title>
+</head>
+
+<body>
+    <h1 id="heading">Hello World!</h1>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        var lOffset = 0;
+        var tOffset = 0;
+        var direction = "right";
+        var boxMove = setInterval(function () {
+            if (direction === "right") {
+                lOffset++;
+            } else if (direction === "down") {
+                tOffset++;
+            } else if (direction === "left") {
+                lOffset--;
+            } else if (direction === "up") {
+                tOffset--;
+            }
+
+            if ((lOffset === 200) && (tOffset === 0)) {
+                direction = "down";
+            } else if ((lOffset === 200) && (tOffset === 200)) {
+                direction = "left";
+            } else if ((lOffset === 0) && (tOffset === 200)) {
+                direction = "up";
+            } else if ((lOffset === 0) && (tOffset === 0)) {
+                direction = "right";
+            }
+
+            $("#heading").offset({
+                left: lOffset,
+                top: tOffset
+            });
+        }, 30);
+
+
+        $("h1").click(function () { clearInterval( boxMove ) });
+    </script>
+</body>
+</html>

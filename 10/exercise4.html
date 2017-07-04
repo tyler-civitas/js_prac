@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mousemove</title>
+</head>
+
+<body>
+    <h1 id="heading">Hello World!</h1>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        var lOffset = 0;
+        var tOffset = 0;
+        var direction = "right";
+        function movingBox(event) {
+            if (direction === "right") {
+                lOffset++;
+            } else if (direction === "down") {
+                tOffset++;
+            } else if (direction === "left") {
+                lOffset--;
+            } else if (direction === "up") {
+                tOffset--;
+            }
+
+            if ((lOffset === 200) && (tOffset === 0)) {
+                direction = "down";
+            } else if ((lOffset === 200) && (tOffset === 200)) {
+                direction = "left";
+            } else if ((lOffset === 0) && (tOffset === 200)) {
+                direction = "up";
+            } else if ((lOffset === 0) && (tOffset === 0)) {
+                direction = "right";
+            }
+
+            $("#heading").offset({
+                left: lOffset,
+                top: tOffset
+            });
+        }
+
+        var boxSpeed = 30;
+        var boxClickedCount = 0;
+//        var boxClicked = function (event) {
+        function boxClicked (event) {
+            console.log("boxclicked event" + boxClickedCount);
+            clearInterval(boxMove);
+            boxSpeed += 30;
+            boxClickedCount++;
+            setInterval(movingBox, boxSpeed);
+            if (boxClickedCount === 10) {
+                $("h1").text("YOU WIN!");
+            };
+        }
+
+        var boxMove = setInterval(movingBox, boxSpeed);
+        $("h1").click(boxClicked);
+    </script>
+</body>
+</html>
