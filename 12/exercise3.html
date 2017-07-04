@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cars</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+    var Car = function (x, y) {
+        this.x = x;
+        this.y = y;
+        this.speed = 50;
+
+        var carHtml = '<img src="https://nostarch.com/images/car.png">';
+        this.carElement = $(carHtml);
+        this.draw();
+    };
+
+    Car.prototype.draw = function () {
+        this.carElement.css({
+            position: "absolute",
+            left: this.x,
+            top: this.y
+        });
+        $("body").append(this.carElement);
+    };
+
+    Car.prototype.moveRight = function (pixels) {
+        this.x += pixels;
+
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+
+    Car.prototype.moveLeft = function (pixels) {
+        this.x -= pixels;
+
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+
+    Car.prototype.moveUp = function (pixels) {
+        this.y -= pixels;
+
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+
+    Car.prototype.moveDown = function (pixels) {
+        this.y += pixels;
+
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+
+    var tesla = new Car(100, 20);
+    var nissan = new Car(100, 50);
+    console.log(tesla);
+    var movingCar = setInterval(function () { tesla.moveRight(Math.floor(Math.random() * 6)) }, 30);
+    var movingCar = setInterval(function () { nissan.moveRight(Math.floor(Math.random() * 6)) }, 30);
+    </script>
+
+</body>
+</html>
