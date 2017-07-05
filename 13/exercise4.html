@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hangman!</title>
+</head>
+
+<body>
+    <h1>Hangman!</h1>
+    <script src = "https://code.jquery.com/jquery-2.1.0.js"></script>
+    <canvas id="canvas" width="200" height="200"></canvas>
+
+    <script>
+        var words = [
+            "javascript",
+            "monkey",
+            "amazing",
+            "pancake",
+            "jupyter",
+            "ben",
+            "catmandoo",
+            "motorcycle"
+            ];
+
+        var word = words[Math.floor(Math.random() * words.length)];
+
+        var answerArray = []
+        for (var i = 0; i < word.length; i++) {
+            answerArray[i] = "_";
+        }
+
+        var remainingLetters = word.length;
+        var remainingGuesses = 6;
+        var partsDrawn = 0;
+
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+
+        var drawPart = function (part) {
+            if (part === 0) {
+                ctx.beginPath();
+                ctx.arc(50, 15, 10, 0,  Math.PI * 2, false);
+                ctx.stroke();
+            } else if (part === 1) {
+                ctx.beginPath();
+                ctx.moveTo(50, 25);
+                ctx.lineTo(50, 75);
+                ctx.stroke();
+            } else if (part === 2) {
+                ctx.beginPath();
+                ctx.moveTo(50, 35);
+                ctx.lineTo(40, 30);
+                ctx.stroke();
+            } else if (part === 3) {
+                ctx.beginPath();
+                ctx.moveTo(50, 35);
+                ctx.lineTo(60, 35);
+                ctx.stroke();
+            } else if (part === 4) {
+                ctx.beginPath();
+                ctx.moveTo(50, 75);
+                ctx.lineTo(40, 90);
+                ctx.stroke();
+            } else if (part === 5) {
+                ctx.beginPath();
+                ctx.moveTo(50, 75);
+                ctx.lineTo(60, 90);
+                ctx.stroke();
+            }
+
+        };
+
+
+        var hangmanRound = function () {
+            alert(answerArray.join(" "));
+
+            // Player Guess
+            var guess = prompt("Guess a letter, or click Cancel to stop playing.");
+            if (guess === null) {
+                return;
+            } else if (guess.length !== 1) {
+                alert("Please enter a single letter.");
+            } else {
+                var correctGuess = false;
+                for (var j = 0; j < word.length; j++) {
+                    if (word[j] === guess.toLowerCase()) {
+                        if (answerArray[j] !== "_") {
+                            alert("Already chose this letter, try again!");
+                            break;
+                        } else {
+                            answerArray[j] = guess.toLowerCase();
+                            remainingLetters--;
+                            correctGuess = true;
+                        }
+                    }
+                }
+                if (correctGuess === false) {
+                    remainingGuesses--;
+                    drawPart(partsDrawn);
+                    partsDrawn++;
+                };
+            }
+            if ((remainingLetters > 0) && (remainingGuesses > 0)) {
+                setTimeout(hangmanRound, 1000);
+            } else if (remainingLetters === 0) {
+                alert(answerArray.join(" "));
+                alert("Good Job! The answer was " + word);
+            } else if (remainingGuesses === 0) {
+                alert("Ran out of guesses!");
+            };
+        };
+
+
+        hangmanRound();
+    </script>
+<body>
+</html>

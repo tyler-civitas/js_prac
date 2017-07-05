@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <canvas id="canvas" width="200" height="200"></canvas>
+
+    <script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    var drawCircle = function (event) {
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(event.pageX, event.pageY, 3, Math.PI * 2, false);
+        ctx.stroke();
+    };
+
+    $("html").mousemove(drawCircle);
+    </script>
+
+</body>
+</html>
+

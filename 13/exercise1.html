@@ -21,18 +21,22 @@
         }
     };
 
-    circle(100, 20, 20, false);
-    circle(100, 70, 30, false);
-    circle(95, 13, 2, true);
-    circle(105, 13, 2, true);
+    var drawSnowman = function (x, y) {
+        // How to move the entire canvas????
+        circle(x + 100, y + 20, 20, false);
+        circle(x + 100, y + 70, 30, false);
+        circle(x + 95, y + 13, 2, true);
+        circle(x + 105, y + 13, 2, true);
 
-    circle(100, 70, 2, true);
-    circle(100, 55, 2, true);
-    circle(100, 85, 2, true);
+        circle(x + 100, y + 70, 2, true);
+        circle(x + 100, y + 55, 2, true);
+        circle(x + 100, y + 85, 2, true);
 
-    ctx.fillStyle = "Orange";
-    circle(100, 20, 2, true);
+        ctx.fillStyle = "Orange";
+        circle(x + 100, y + 20, 2, true);
 
+    };
+    drawSnowman(50, 50);
     </script>
 
 </body>
